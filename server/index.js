@@ -16,8 +16,10 @@ passport.use(
       callbackURL: '/auth/google/callback'
     },
     // callback function
-    (accessToken) => {
-      console.log(accessToken);
+    (accessToken, refreshToekn, profile, done) => {
+      console.log('access token', accessToken); // access user's Google data, expires after a certain amount of tim
+      console.log('refresh token', refreshToekn); // refresh access token if it expires
+      console.log('profile', profile);
     }
   )
 );
@@ -36,6 +38,5 @@ app.get('/auth/google/callback', passport.authenticate('google'));
 // Dev: Run on PORT 5000
 const PORT = process.env.PORT || 5000;
 app.listen(PORT)
-
 
 
